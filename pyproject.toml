@@ -1,0 +1,20 @@
+[project]
+name = "cron-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic-ai-slim[anthropic,logfire,openai]>=0.0.35",
+    "pyyaml>=6.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-asyncio>=0.25.3",
+    "pytest-tornasync>=0.6.0.post2",
+    "pytest-trio>=0.8.0",
+    "pytest-twisted>=1.14.3",
+    "twisted>=24.11.0",
+]

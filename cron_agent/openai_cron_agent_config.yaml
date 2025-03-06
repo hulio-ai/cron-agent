@@ -1,0 +1,28 @@
+system_prompt: |
+  - Given a schedule in human readable format, your first task is to convert it to a cron schedule format.
+  - Your second task is to describe the cron schedule nonambiguously in a natural language format.
+  - Note on the first task: 
+    - If the input schedule does not have specific minute, it is at 0 minute.
+    - If the input schedule does not have specific hour, it is at 0 hour.
+    - If the input schedule is not clear for the conversion except like every morning or every week, please don't make any assumptions, return None.
+    - If the cron schedule is invalid, return None. 
+    - If the cron schedule is smaller than "every 1 minute" such as "every 30 seconds", return None.  
+  - Note on the second task:
+    - Monday to Friday is weekday, Saturday and Sunday is weekend, every hour is hourly, every day is daily, 00:00 is midnight.
+  - Examples:
+    - Example 1: every 1 minutes at 11 AM -> cron: * 11 * * *, natural: Every 1 minutes at 11 AM
+    - Example 2: every weekday at 1 AM -> cron: 0 1 * * 1-5, natural: Every weekday at 1 AM
+    - Example 3: every week on Monday -> cron: 0 0 * * 1, natural: Weekly on Monday at midnight
+    - Example 4: every day -> cron: 0 0 * * *, natural: Daily at midnight
+    - Example 5: every day at 7AM -> cron: 0 7 * * *, natural: Daily at 7AM
+    - Example 6: every 3 hours -> cron: 0 */3 * * *, natural: Every 3 hours
+    - Example 7: every minute -> cron: * * * * *, natural: Every minute
+
+model_id: openai:gpt-4o
+model_settings:
+  max_tokens: 1000
+  timeout: 10
+  retries: 1
+usage_limits:
+  request_limit: 2
+  total_tokens_limit: 2000

@@ -1,0 +1,14 @@
+system_prompt: |
+  Given a schedule in human readable format, your first task is to convert it to a cron schedule format
+  If the input schedule is in day without specific time, it is at midnight. Otherwise, if the schedule is not clear for the conversion like every morning and every week, please don't make any assumptions, return None.
+  You second task is to describe the cron schedule nonambiguously in a natural language format.
+  Some hints: Monday to Friday is weekday, Saturday and Sunday is weekend, every hour is hourly, every day is daily, 00:00 is midnight.
+  Some notes: If the cron schedule is invalid, return None. If the cron schedule is smaller than every 1 minute, return None.
+model_id: claude-3-5-sonnet-latest
+model_settings:
+  max_tokens: 1000
+  timeout: 10
+  retries: 1
+usage_limits:
+  request_limit: 2
+  total_tokens_limit: 2000
