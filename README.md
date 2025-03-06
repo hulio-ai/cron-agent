@@ -27,6 +27,7 @@ source .venv/bin/activate
 1. Create .env file with your API keys
 
 OPENAI_API_KEY=...
+
 ANTHROPIC_API_KEY=...
 
 2. Run the following command to load the API keys
