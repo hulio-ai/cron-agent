@@ -60,10 +60,10 @@ async def test_valid_schedules(agent, schedule_input, schedule_cron, schedule_na
             ),
         )
         log_agent_result(logger, "Cron agent", result)
-        logger.info(f"Result: {result.data}")
-        assert result.data is not None
-        assert isinstance(result.data, Schedule)
-        assert result.data.cron in schedule_cron
+        logger.info(f"Result: {result.output}")
+        assert result.output is not None
+        assert isinstance(result.output, Schedule)
+        assert result.output.cron in schedule_cron
 
 
 @pytest.mark.asyncio
@@ -87,7 +87,7 @@ async def test_invalid_schedule(agent, invalid_schedule):
             ),
         )
         log_agent_result(logger, "Cron agent", result)
-        assert not result.data or not isinstance(result.data, Schedule)
+        assert not result.output or not isinstance(result.output, Schedule)
 
 
 @pytest.mark.asyncio
@@ -100,10 +100,12 @@ async def test_invalid_schedule(agent, invalid_schedule):
 )
 async def test_schedule_exception(agent, invalid_schedule):
     with pytest.raises(Exception):
-        await agent.run(
+        result = await agent.run(
             invalid_schedule,
             usage_limits=UsageLimits(
                 request_limit=agent.request_limit,
                 total_tokens_limit=agent.total_tokens_limit,
             ),
         )
+        log_agent_result(logger, "Cron agent", result)
+        assert not result.output

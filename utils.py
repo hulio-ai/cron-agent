@@ -13,6 +13,6 @@ def log_agent_result(
     logger.info(
         f"{agent_name} - usage: {usage.total_tokens} tokens, {usage.requests} requests"
     )
-    logger.debug(f"{agent_name} - result: {result.data}")
-    if not result.data:
+    logger.debug(f"{agent_name} - result: {result.output}")
+    if not result.output:
         logger.error(f"{agent_name} - all agent messages: {result.all_messages_json()}")
