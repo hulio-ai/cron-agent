@@ -18,7 +18,7 @@ system_prompt: |
     - Example 6: every 3 hours -> cron: 0 */3 * * *, natural: Every 3 hours
     - Example 7: every minute -> cron: * * * * *, natural: Every minute
 
-model_id: openai:gpt-4o
+model_id: openai:gpt-4.1
 model_settings:
   max_tokens: 1000
   timeout: 10
